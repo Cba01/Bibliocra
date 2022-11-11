@@ -1,0 +1,33 @@
+{{#if books}}
+    <div class="m-3">
+        <a href="/admin/booksadd">agregar libro</a>
+    </div>
+    <div class="m-2">
+        <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Nombre</th>
+      <th scope="col">Descripcion</th>
+      <th scope="col">Opciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each allbooks}}
+    <tr>
+      <td>{{title}}</td>
+      <td>{{description}}</td>
+      <td>
+        <a href="/api/book/delete/{{_id}}" class="btn btn-danger">Eliminar</a>
+      </td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
+    </div>
+{{/if}}
+
+{{#if add}}
+    <div class="m-3">
+        {{>addBook}}
+    </div>
+{{/if}}
