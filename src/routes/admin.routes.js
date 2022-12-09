@@ -10,7 +10,7 @@ router.get("/admin", (req, res) => {
 router.get("/admin/books", (req, res) => {
   axios.get('http://localhost:3000/api/book/render').then((data)=>{
     const allbooks = data.data;
-    console.log(allbooks)
+    
     res.render("booksAdmin", { layout: "adminLayout", books: true, allbooks})
   })
 })

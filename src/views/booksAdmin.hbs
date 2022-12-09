@@ -1,6 +1,12 @@
 {{#if books}}
-    <div class="m-3">
-        <a href="/admin/booksadd">agregar libro</a>
+    <div class="m-3 d-flex">
+        <form action="/api/book/buscar" method="POST">
+          <div class="d-flex">
+            <input class="form-control" type="text" name="nombre" id="nombre">
+            <button type="submit" class="btn btn-primary">Buscar</button>
+          </div>
+        </form>
+        <a class="btn btn-primary ms-auto" href="/admin/booksadd">agregar libro</a>
     </div>
     <div class="m-2">
         <table class="table">
