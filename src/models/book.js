@@ -10,10 +10,32 @@ const bookSchema = new Schema(
       type: String,
       trim: true,
     },
+    image: {
+      type: String,
+      trim: true,
+    },
+    price: {
+      type: Number,
+      trim: true,
+    },
+    genre: [
+      {
+        type: String,
+        trim: true,
+      },
+    ],
+    author: {
+      type: String,
+      trim: true,
+    },
+    date: {
+      type: Date,
+      trim: true,
+    },
   },
   {
     timestamps: true,
-    versionKey: false
+    versionKey: false,
   }
 );
 
