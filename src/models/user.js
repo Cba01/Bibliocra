@@ -22,7 +22,7 @@ const userSchema = new Schema(
         type: Number,
         trim: true,
     },
-    contraseña: {
+    password: {
         type: String,
         trim: true,
     },

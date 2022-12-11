@@ -4,38 +4,103 @@ const axios = require('axios');
 const router = Router();
 
 router.get("/admin", (req, res) => {
-  res.render("admin", { layout: "adminLayout" });
+  const user = req.session.user;
+  console.log(user)
+
+  if(user){
+    if(user.rol != 'administrador'){
+      res.redirect('/');
+    }
+    res.render("admin", { layout: "adminLayout", auth: true });
+  }else{
+    res.redirect('/login');
+  }
 });
 
 router.get("/admin/books", (req, res) => {
-  axios.get('http://localhost:3000/api/book/render').then((data)=>{
-    const allbooks = data.data;
+  const user = req.session.user;
 
-    res.render("booksAdmin", { layout: "adminLayout", books: true, allbooks });
-  });
+  if(user){
+    if(user.rol != 'administrador'){
+      res.redirect('/')
+    }
+    axios.get('http://localhost:3000/api/book/render').then((data)=>{
+      const allbooks = data.data;
+
+      res.render("booksAdmin", { layout: "adminLayout", books: true, allbooks, auth: true});
+    });
+  }else{
+    res.redirect('/login');
+  }
 });
 
 router.get("/admin/booksadd", (req, res) => {
-  res.render("booksAdmin", { layout: "adminLayout", add: true });
+  const user = req.session.user;
+
+  if(user){
+    if(user.rol != 'administrador'){
+      res.redirect('/')
+    }
+    res.render("booksAdmin", { layout: "adminLayout", add: true, auth: true });
+  }else{
+    res.redirect('/login');
+  }
 });
 
 router.get("/admin/users", (req, res) => {
-  axios.get("http://localhost:3000/api/user/render").then((data) => {
+  const user = req.session.user;
+
+  if(user){
+    if(user.rol != 'administrador'){
+      res.redirect('/')
+    }
+    axios.get("http://localhost:3000/api/user/render").then((data) => {
     const allusers = data.data;
 
-    res.render("usersAdmin", { layout: "adminLayout", users: true, allusers});
+    res.render("usersAdmin", { layout: "adminLayout", users: true, allusers, auth: true});
   });
+  }else{
+    res.redirect('/login');
+  }
 });
 
 router.get("/admin/useradd", (req, res) => {
-  res.render("usersAdmin", { layout: "adminLayout", add: true });
+  const user = req.session.user;
+
+  if(user){
+    if(user.rol != 'administrador'){
+      res.redirect('/')
+    }
+    res.render("usersAdmin", { layout: "adminLayout", add: true, auth: true });
+  }else{
+    res.redirect('/login');
+  }
 });
 
 router.get("/admin/sales", (req, res) => {
-  res.render("salesAdmin", { layout: "adminLayout" });
+  const user = req.session.user;
+
+  if(user){
+    if(user.rol != 'administrador'){
+      res.redirect('/')
+    }
+    res.render("salesAdmin", { layout: "adminLayout", auth: true });
+  }else{
+    res.redirect('/login');
+  }
+});
 
 router.get("/admin/booksadd", (req, res)=>{
-    res.render("booksAdmin", { layout: "adminLayout", add: true})
+  const user = req.session.user;
+
+  if(user){
+    if(user.rol != 'administrador'){
+      res.redirect('/')
+    }
+    res.render("booksAdmin", { layout: "adminLayout", add: true, auth: true})
+  }else{
+    res.redirect('/login');
+  }
 })
 
 export default router;

@@ -9,6 +9,7 @@ import path from "path";
 import morgan from "morgan";
 
 const app = express();
+const session = require('express-session');
 
 app.set("views", path.join(__dirname, "/views"));
 
@@ -24,6 +25,12 @@ app.set("view engine", ".hbs");
 //MiddleWares
 app.use(morgan("dev"));
 app.use(express.urlencoded({ extended: false }));
+
+app.use(session({
+  secret: 'bibliocra25',
+  resave: false,
+  saveUninitialized: false, 
+}))
 
 //Routes
 app.use(indexRoutes);
