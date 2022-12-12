@@ -1,5 +1,7 @@
+<img class="img-thumbnail" width="100" src="../src/public/images/1670808904272_FjsSrQ3UAAMua5N.jpg" alt="">
 {{#if books}}
     <div class="m-3">
+      
         <a href="/admin/booksadd">agregar libro</a>
     </div>
     <div class="m-2">
@@ -21,7 +23,10 @@
     <tr>
       <td>{{title}}</td>
       <td>{{description}}</td>
-      <td>{{image}}</td>
+      <td><img class="img-thumbnail" width="100" src="src/public/images/{{image}}" alt="">
+      {{image}}
+      </td>
+      
       <td>{{price}}</td>
       <td>{{genre}}</td>
       <td>{{author}}</td>
