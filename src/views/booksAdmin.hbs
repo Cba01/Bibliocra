@@ -1,8 +1,7 @@
 <img class="img-thumbnail" width="100" src="../src/public/images/1670808904272_FjsSrQ3UAAMua5N.jpg" alt="">
 {{#if books}}
     <div class="m-3">
-      
-        <a href="/admin/booksadd">agregar libro</a>
+        <a href="/api/book/createBook">agregar libro</a>
     </div>
     <div class="m-2">
         <table class="table">
@@ -33,16 +32,11 @@
       <td>{{date}}</td>
       <td>
         <a href="/api/book/delete/{{_id}}" class="btn btn-danger">Eliminar</a>
+        <a href="/api/book/updateBook/{{_id}}" class="btn btn-info">Editar</a>
       </td>
     </tr>
     {{/each}}
   </tbody>
 </table>
-    </div>
-{{/if}}
-
-{{#if add}}
-    <div class="m-3">
-        {{>addBook}}
     </div>
 {{/if}}

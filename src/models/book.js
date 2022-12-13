@@ -29,7 +29,7 @@ const bookSchema = new Schema(
       trim: true,
     },
     date: {
-      type: Date,
+      type: String,
       trim: true,
     },
   },
