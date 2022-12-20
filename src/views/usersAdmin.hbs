@@ -1,1 +1,34 @@
 <h1>Users</h1>
+{{#if users}}
+    <div class="m-3">
+        <a href="/admin/usersadd">agregar usuario</a>
+    </div>
+    <div class="m-2">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Usuario</th>
+                    <th scope="col">Contraseña</th>
+                    <th scope="col">Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each allusers}}
+                <tr>
+                    <td>{{username}}</td>
+                    <td>{{password}}</td>
+                    <td>
+                        <a href="/api/user/delete/{{_id}}" class="btn btn-danger">Eliminar</a>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+{{/if}}
+
+{{#if add}}
+    <div class="m-3">
+        {{>addUser}}
+    </div>
+{{/if}}

@@ -20,8 +20,15 @@ router.get("/admin/booksadd", (req, res) => {
 });
 
 router.get("/admin/users", (req, res) => {
-    res.render("usersAdmin", { layout: "adminLayout" });
+  axios.get("http://localhost:3000/api/user/render").then((data) => {
+    const allusers = data.data;
+    console.log(allusers);
+    res.render("usersAdmin", { layout: "adminLayout", users: true, allusers });
+  });  
+});
 
+router.get("/admin/usersadd", (req, res) => {
+  res.render("usersAdmin", { layout: "adminLayout", add: true });
 });
 
 router.get("/admin/sales", (req, res) => {
