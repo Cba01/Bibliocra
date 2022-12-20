@@ -23,6 +23,7 @@ app.set("view engine", ".hbs");
 //MiddleWares
 app.use(morgan("dev"));
 app.use(express.urlencoded({ extended: false }));
+app.use(express.static("public"));
 
 //Routes
 app.use(indexRoutes);
