@@ -1,6 +1,6 @@
 import { response, Router } from "express";
 
-const axios = require('axios');
+const axios = require("axios");
 const router = Router();
 
 router.get("/admin", (req, res) => {
@@ -89,18 +89,5 @@ router.get("/admin/sales", (req, res) => {
     res.redirect('/login');
   }
 });
-
-router.get("/admin/booksadd", (req, res)=>{
-  const user = req.session.user;
-
-  if(user){
-    if(user.rol != 'administrador'){
-      res.redirect('/')
-    }
-    res.render("booksAdmin", { layout: "adminLayout", add: true, auth: true})
-  }else{
-    res.redirect('/login');
-  }
-})
 
 export default router;
