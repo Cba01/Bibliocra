@@ -53,12 +53,19 @@ const addUser = async function(req, res){
     }
 }
 
+const logout = async function(req, res){
+    req.session.user = null;
+
+    res.redirect('/');
+}
+
 const renderUsers = async function(req, res){
     const users = await User.find();
 
     res.status(200).send(users)
 }
 
+//funcion no terminada
 const searchUser = async function(req, res){
     const data = req.body.nombre;
     
@@ -79,6 +86,7 @@ const deleteUser = async function(req, res){
 
 module.exports = {
     login,
+    logout,
     renderUsers,
     addUser,
     deleteUser,

@@ -6,6 +6,7 @@ const renderBooks = async function(req, res){
     res.status(200).send(books)
 }
 
+//funcion no terminada
 const searchBook = async function(req, res){
     const data = req.body.nombre;
     
