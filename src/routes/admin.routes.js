@@ -48,10 +48,10 @@ router.get("/admin/book/createBook", (req, res) => {
   }
 });
 
-router.get("/book/updateBook/:id", async (req, res) => {
+router.get("/admin/book/updateBook/:id", async (req, res) => {
   // Buscar Libro por ID y enviarlo como variable
   const book = await Book.findById(req.params.id).lean();
-  res.render("updateBook", { layout: "adminLayout", book});
+  res.render("updateBook", { layout: "adminLayout", book, auth: true});
 });
 
 router.get("/admin/users", (req, res) => {
