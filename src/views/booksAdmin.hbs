@@ -1,5 +1,6 @@
 <div class="container">
-  {{#if books}}
+  <img class="img-thumbnail" width="100" src="../src/public/images/1670808904272_FjsSrQ3UAAMua5N.jpg" alt="">
+{{#if books}}
     <div class="m-3 d-flex">
         <form action="/api/book/buscar" method="POST">
           <div class="d-flex">
@@ -7,7 +8,7 @@
             <button type="submit" class="btn btn-primary">Buscar</button>
           </div>
         </form>
-        <a class="btn btn-primary ms-auto" href="/admin/booksadd">agregar libro</a>
+        <a class="btn btn-primary ms-auto" href="/api/book/createBook">agregar libro</a>
     </div>
     <div class="m-2">
         <table class="table">
@@ -15,6 +16,11 @@
     <tr>
       <th scope="col">Nombre</th>
       <th scope="col">Descripcion</th>
+      <th scope="col">Imagen</th>
+      <th scope="col">Precio</th>
+      <th scope="col">Genero</th>
+      <th scope="col">Autor</th>
+      <th scope="col">Fecha</th>
       <th scope="col">Opciones</th>
     </tr>
   </thead>
@@ -23,8 +29,17 @@
     <tr>
       <td>{{title}}</td>
       <td>{{description}}</td>
+      <td><img class="img-thumbnail" width="100" src="src/public/images/{{image}}" alt="">
+      {{image}}
+      </td>
+      
+      <td>{{price}}</td>
+      <td>{{genre}}</td>
+      <td>{{author}}</td>
+      <td>{{date}}</td>
       <td>
         <a href="/api/book/delete/{{_id}}" class="btn btn-danger">Eliminar</a>
+        <a href="/api/book/updateBook/{{_id}}" class="btn btn-info">Editar</a>
       </td>
     </tr>
     {{/each}}
@@ -38,4 +53,3 @@
         {{>addBook}}
     </div>
 {{/if}}
-</div>
