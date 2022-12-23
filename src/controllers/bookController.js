@@ -81,5 +81,6 @@ module.exports = {
     renderBooks,
     addBook,
     deleteBook,
-    searchBook
+    searchBook,
+    updateBook
 }
