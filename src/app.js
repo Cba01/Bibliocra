@@ -4,6 +4,7 @@ import indexRoutes from "./routes/index.routes";
 import adminRoutes from "./routes/admin.routes";
 import booksRoutes from "./routes/book.routes";
 import usersRoutes from "./routes/user.routes";
+import usersRoutes from "./routes/user.routes";
 import { create } from "express-handlebars";
 import path from "path";
 import morgan from "morgan";
@@ -37,6 +38,7 @@ app.use(session({
 app.use(indexRoutes);
 app.use(adminRoutes);
 app.use("/api", booksRoutes);
+app.use("/api", usersRoutes);
 app.use("/api", usersRoutes);
 
 export default app;

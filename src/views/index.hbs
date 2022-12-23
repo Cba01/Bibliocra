@@ -1,3 +1,22 @@
-<h1>Hello World</h1>
-
-<a href="/admin">panel admin</a>
+<div class="container">
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col-6">
+            <form class="text-light bg-success p-2 m-1">
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Correo Electrónico</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" aria-placeholder="Ingrese correo electronico">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Contraseña</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1" aria-placeholder="Ingrese contraseña">
+                </div>
+                <div style="text-align: center;">
+                    <button class="btn btn-primary" hidden>Login</button>
+                    <a class="btn btn-primary" href="/admin">Login</a> {{!-- Es un placeholder --}}
+                </div>                
+            </form>
+        </div>
+        <div class="col-3"></div>
+    </div>    
+</div>

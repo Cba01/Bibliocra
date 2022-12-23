@@ -74,14 +74,6 @@ router.get("/admin/users", (req, res) => {
 router.get("/admin/useradd", (req, res) => {
   const user = req.session.user;
 
-  if(user){
-    if(user.rol != 'administrador'){
-      res.redirect('/')
-    }
-    res.render("usersAdmin", { layout: "adminLayout", add: true, auth: true });
-  }else{
-    res.redirect('/login');
-  }
 });
 
 router.get("/admin/sales", (req, res) => {
