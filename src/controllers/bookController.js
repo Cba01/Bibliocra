@@ -6,6 +6,15 @@ const renderBooks = async function(req, res){
     res.status(200).send(books)
 }
 
+//funcion no terminada
+const searchBook = async function(req, res){
+    const data = req.body.nombre;
+    
+    const books = await Book.find({title: data});
+
+    res.status(200).send(books)
+}
+
 const addBook = async function(req, res){
     const book = Book(req.body);
   
@@ -28,5 +37,6 @@ const deleteBook = async function(req, res){
 module.exports = {
     renderBooks,
     addBook,
-    deleteBook
+    deleteBook,
+    searchBook
 }
