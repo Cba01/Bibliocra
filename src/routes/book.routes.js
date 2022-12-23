@@ -1,6 +1,4 @@
 import { Router } from "express";
-import Book from "../models/book";
-
 
 var bookController = require("../controllers/bookController");
 
@@ -34,16 +32,16 @@ router.get("/book/delete/:id", bookController.deleteBook);
 router.post("/book/update/:id",load.single("image"), bookController.updateBook);
 
 //Enviar a la Vista formulario de crear Libro
-router.get("/book/createBook", (req, res) => {
-  res.render("addBook", { layout: "adminLayout"});
-});
+// router.get("/book/createBook", (req, res) => {
+//   res.render("addBook", { layout: "adminLayout"});
+// });
 
 //Enviar a la Vista formulario de Actualizar Libro
-router.get("/book/updateBook/:id", async (req, res) => {
-  // Buscar Libro por ID y enviarlo como variable
-  const book = await Book.findById(req.params.id).lean();
-  res.render("updateBook", { layout: "adminLayout", book});
-});
+// router.get("/book/updateBook/:id", async (req, res) => {
+//   // Buscar Libro por ID y enviarlo como variable
+//   const book = await Book.findById(req.params.id).lean();
+//   res.render("updateBook", { layout: "adminLayout", book});
+// });
 
 
 

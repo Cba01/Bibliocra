@@ -1,4 +1,5 @@
 import { response, Router } from "express";
+import Book from "../models/book";
 
 const axios = require("axios");
 const router = Router();
@@ -34,17 +35,23 @@ router.get("/admin/books", (req, res) => {
   }
 });
 
-router.get("/admin/booksadd", (req, res) => {
+router.get("/admin/book/createBook", (req, res) => {
   const user = req.session.user;
 
   if(user){
     if(user.rol != 'administrador'){
       res.redirect('/')
     }
-    res.render("booksAdmin", { layout: "adminLayout", add: true, auth: true });
+    res.render("addBook", { layout: "adminLayout", auth: true });
   }else{
     res.redirect('/login');
   }
+});
+
+router.get("/book/updateBook/:id", async (req, res) => {
+  // Buscar Libro por ID y enviarlo como variable
+  const book = await Book.findById(req.params.id).lean();
+  res.render("updateBook", { layout: "adminLayout", book});
 });
 
 router.get("/admin/users", (req, res) => {

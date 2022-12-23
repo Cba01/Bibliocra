@@ -25,6 +25,7 @@ app.set("view engine", ".hbs");
 //MiddleWares
 app.use(morgan("dev"));
 app.use(express.urlencoded({ extended: false }));
+app.use(express.static(path.join(__dirname, 'public/')));
 
 app.use(session({
   secret: 'bibliocra25',
