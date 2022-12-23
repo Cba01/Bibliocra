@@ -1,11 +1,27 @@
-<form action="/api/user/add" method="post">
+<form action="/api/user/register" method="post">
   <div class="mb-3">
-    <label for="username" class="form-label">Usuario</label>
-    <input type="text" class="form-control" id="username" name="username" placeholder="Nombre de usuario" />
+    <label for="nombre" class="form-label">Nombre</label>
+    <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre" />
+  </div>
+  <div class="mb-3">
+    <label for="apellido" class="form-label">Apellido</label>
+    <input type="text" class="form-control" id="apellido" name="apellido" placeholder="Apellido" />
+  </div>
+  <div class="mb-3">
+    <label for="usuario" class="form-label">Usuario</label>
+    <input type="text" class="form-control" id="usuario" name="usuario" placeholder="Usuario" />
+  </div>
+  <div class="mb-3">
+    <label for="direccion" class="form-label">Direccion</label>
+    <input type="text" class="form-control" id="direccion" name="direccion" placeholder="Direccion" />
+  </div>
+  <div class="mb-3">
+    <label for="telefono" class="form-label">Telefono</label>
+    <input type="number" class="form-control" id="telefono" name="telefono" placeholder="Telefono" />
   </div>
   <div class="mb-3">
     <label for="password" class="form-label">Contraseña</label>
-    <input type="text" class="form-control" id="password" name="password" placeholder="Contraseña" />
+    <input type="password" class="form-control" id="password" name="password" placeholder="Contraseña" />
   </div>
   <div>
     <button type="submit" class="btn btn-primary mb-3">Agregar</button>

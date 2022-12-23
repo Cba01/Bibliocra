@@ -1,29 +1,41 @@
-<h1>Users</h1>
-{{#if users}}
-    <div class="m-3">
-        <a href="/admin/usersadd">agregar usuario</a>
+<div class="container">
+    {{#if users}}
+    <div class="m-3 d-flex">
+        <form action="/api/user/buscar" method="POST">
+          <div class="d-flex">
+            <input class="form-control" type="text" name="nombre" id="nombre">
+            <button type="submit" class="btn btn-primary">Buscar</button>
+          </div>
+        </form>
+        <a class="btn btn-primary ms-auto" href="/admin/useradd">agregar usuario</a>
     </div>
     <div class="m-2">
         <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">Usuario</th>
-                    <th scope="col">Contraseña</th>
-                    <th scope="col">Opciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                {{#each allusers}}
-                <tr>
-                    <td>{{username}}</td>
-                    <td>{{password}}</td>
-                    <td>
-                        <a href="/api/user/delete/{{_id}}" class="btn btn-danger">Eliminar</a>
-                    </td>
-                </tr>
-                {{/each}}
-            </tbody>
-        </table>
+  <thead>
+    <tr>
+      <th scope="col">Nombre</th>
+      <th scope="col">Apellido</th>
+      <th scope="col">Direccion</th>
+      <th scope="col">Telefono</th>
+      <th scope="col">Rol</th>
+      <th scope="col">Opciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each allusers}}
+    <tr>
+      <td>{{nombre}}</td>
+      <td>{{apellido}}</td>
+      <td>{{direccion}}</td>
+      <td>{{telefono}}</td>
+      <td>{{rol}}</td>
+      <td>
+        <a href="/api/user/delete/{{_id}}" class="btn btn-danger">Eliminar</a>
+      </td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
     </div>
 {{/if}}
 
@@ -32,3 +44,4 @@
         {{>addUser}}
     </div>
 {{/if}}
+</div>

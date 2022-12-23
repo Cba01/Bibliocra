@@ -17,8 +17,9 @@
     </button>
     <div class="collapse navbar-collapse" id="topNavBar">
       <ul class="navbar-nav d-flex ms-auto my-3 my-lg-0">
+        {{#if auth}}
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="/admin">Inicio</a>
+        <a class="nav-link" aria-current="page" href="/admin">Inicio</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" aria-current="page" href="/admin/books">Libros</a>
@@ -30,6 +31,12 @@
         <li class="nav-item">
           <a class="nav-link" aria-current="page" href="/admin/sales">Ventas</a>
         </li>
+        <li class="nav-item">
+          <form action="/api/user/logout" method="post">
+            <button type="submit" class="btn btn-primary">Cerrar sesion</button>
+          </form>
+        </li>
+        {{/if}}
       </ul>
     </div>
   </div>

@@ -4,11 +4,13 @@ import indexRoutes from "./routes/index.routes";
 import adminRoutes from "./routes/admin.routes";
 import booksRoutes from "./routes/book.routes";
 import usersRoutes from "./routes/user.routes";
+import usersRoutes from "./routes/user.routes";
 import { create } from "express-handlebars";
 import path from "path";
 import morgan from "morgan";
 
 const app = express();
+const session = require('express-session');
 
 app.set("views", path.join(__dirname, "/views"));
 
@@ -24,12 +26,19 @@ app.set("view engine", ".hbs");
 //MiddleWares
 app.use(morgan("dev"));
 app.use(express.urlencoded({ extended: false }));
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, 'public/')));
+
+app.use(session({
+  secret: 'bibliocra25',
+  resave: false,
+  saveUninitialized: false, 
+}))
 
 //Routes
 app.use(indexRoutes);
 app.use(adminRoutes);
 app.use("/api", booksRoutes);
+app.use("/api", usersRoutes);
 app.use("/api", usersRoutes);
 
 export default app;
