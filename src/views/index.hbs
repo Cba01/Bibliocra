@@ -1,22 +1,80 @@
-<div class="container">
-    <div class="row">
-        <div class="col-3"></div>
-        <div class="col-6">
-            <form class="text-light bg-success p-2 m-1">
-                <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Correo Electrónico</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" aria-placeholder="Ingrese correo electronico">
-                </div>
-                <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label">Contraseña</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" aria-placeholder="Ingrese contraseña">
-                </div>
-                <div style="text-align: center;">
-                    <button class="btn btn-primary" hidden>Login</button>
-                    <a class="btn btn-primary" href="/admin">Login</a> {{!-- Es un placeholder --}}
-                </div>                
-            </form>
-        </div>
-        <div class="col-3"></div>
-    </div>    
+
+
+
+
+<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
+  <div class="carousel-indicators">
+    <button
+      type="button"
+      data-bs-target="#carouselExampleIndicators"
+      data-bs-slide-to="0"
+      class="active"
+      aria-current="true"
+      aria-label="Slide 1"
+    ></button>
+    <button
+      type="button"
+      data-bs-target="#carouselExampleIndicators"
+      data-bs-slide-to="1"
+      aria-label="Slide 2"
+    ></button>
+    <button
+      type="button"
+      data-bs-target="#carouselExampleIndicators"
+      data-bs-slide-to="2"
+      aria-label="Slide 3"
+    ></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="./img/bookshelf-1.jpg" class="d-block w-100" height="500" />
+    </div>
+    <div class="carousel-item">
+      <img src="./img/hero1.jpeg" class="d-block w-100" height="500" />
+    </div>
+    <div class="carousel-item">
+      <img src="./img/hero1.jpeg" class="d-block w-100" height="500" />
+    </div>
+  </div>
+  <button
+    class="carousel-control-prev"
+    type="button"
+    data-bs-target="#carouselExampleIndicators"
+    data-bs-slide="prev"
+  >
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button
+    class="carousel-control-next"
+    type="button"
+    data-bs-target="#carouselExampleIndicators"
+    data-bs-slide="next"
+  >
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
 </div>
+
+<section id="feature" class="section-p1">
+  <div class="fe-box">
+    <img src="./img/it-book.jpg" width="140" alt="" />
+    <h6>Libros de Terror</h6>
+  </div>
+
+  <div class="fe-box">
+    <img src="./img/Dune-Cover-1.jpg" width="120" alt="" />
+    <h6>Libros de Ciencia Ficcion</h6>
+  </div>
+
+  <div class="fe-box">
+    <img src="./img/narnia-book.jpg" width="150" alt="" />
+    <h6>Libros de Fantasia</h6>
+  </div>
+
+  <div class="fe-box">
+    <img src="./img/psicoanalista-book.jpg" width="140" alt="" />
+    <h6>Libros de Misterio</h6>
+  </div>
+
+</section>
