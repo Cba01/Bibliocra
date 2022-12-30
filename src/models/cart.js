@@ -1,19 +1,10 @@
-import { Schema, model } from "mongoose";
 /* TODO: Validar modelo */
-const cartSchema = new Schema(
-  {
-    libros: {
-      type: String,
-      trim: true,
-    },
-    total: {
-      type: String,
-      trim: true,
-    },
-  },
-  {
-    timestamps: true
-  }
-);
+module.exports = function Cart() {
+    this.libros = [];
+    this.totalCant = 0;
+    this.precioTotal = 0;
 
-export default model("Cart", cartSchema);
+    this.add = function(libros, id) {
+        
+    }
+}
