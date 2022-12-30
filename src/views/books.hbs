@@ -1,8 +1,7 @@
 
 <section style="background: url(./img/bookshelf-2.jpg) no-repeat center fixed; background-size: cover;">
     {{!-- CREAR CARD DE LIBRO --}}
-    {{#if books}}        
-        {{#each allbooks}}
+        {{#each books}}
         <div class="card" style="width: 18rem;">
             <img class="card-img-top img-thumbnail" width="100" src="/images/{{image}}" alt="">
             {{image}}
@@ -14,13 +13,4 @@
             </div>
         </div>
         {{/each}}
-    {{/if}}
-
-<!-- FALTA IMPLEMENTAR LÓGICA
-    {{#if add}}
-        <div class="m-3">
-            {{>addBook}}
-        </div>
-    {{/if}}
--->
 </section>
