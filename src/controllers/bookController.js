@@ -77,10 +77,19 @@ const updateBook = async function (req, res) {
   res.redirect("/admin/books");
 };
 
+const searchBookId = async function(req, res){
+  const id = req.params.id
+
+  const reg = await Book.find({_id: id});
+
+  res.status(200).send(reg)
+}
+
 module.exports = {
     renderBooks,
     addBook,
     deleteBook,
     searchBook,
-    updateBook
+    updateBook,
+    searchBookId
 }

@@ -9,7 +9,7 @@
                 <h5 class="card-title">{{title}}</h5>
                 <p class="card-text">{{description}}</p>
                 <p class="card-text">{{price}}</p>
-                <a href="/api/cart/addBook/{{_id}}"class="btn btn-primary">Añadir</a>
+                <a onclick="agregarAlCarrito('{{_id}}')" class="btn btn-primary">Añadir</a>
             </div>
         </div>
         {{/each}}
