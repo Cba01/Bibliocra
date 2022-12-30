@@ -1,0 +1,41 @@
+<form id="formUpdate" action="/api/user/update/{{usuario._id}}" method="post">
+  <div class="mb-3">
+    <label for="nombre" class="form-label">Nombre</label>
+    <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre" value="{{usuario.nombre}}" />
+  </div>
+  <div class="mb-3">
+    <label for="apellido" class="form-label">Apellido</label>
+    <input type="text" class="form-control" id="apellido" name="apellido" placeholder="Apellido" value="{{usuario.apellido}}" />
+  </div>
+  <div class="mb-3">
+    <label for="usuario" class="form-label">Usuario</label>
+    <input type="text" class="form-control" id="usuario" name="usuario" placeholder="Usuario" value="{{usuario.usuario}}" />
+  </div>
+  <div class="mb-3">
+    <label for="correo" class="form-label">Correo electronico</label>
+    <input type="email" class="form-control" id="correo" name="correo" placeholder="Correo Electronico" value="{{usuario.correo}}" />
+  </div>
+  <div class="mb-3">
+    <label for="direccion" class="form-label">Direccion</label>
+    <input type="text" class="form-control" id="direccion" name="direccion" placeholder="Direccion" value="{{usuario.direccion}}" />
+  </div>
+  <div class="mb-3">
+    <label for="telefono" class="form-label">Telefono</label>
+    <input type="number" class="form-control" id="telefono" name="telefono" placeholder="Telefono" value="{{usuario.telefono}}" />
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Rol</label>
+    <select class="form-select" name="rol" id="rol">
+      {{#if rol}}
+      <option value="usuario">Usuario</option>
+      <option value="administrador" selected="">Administrador</option>
+      {{else}}
+      <option value="usuario" selected="">Usuario</option>
+      <option value="administrador">Administrador</option>
+      {{/if}}
+    </select>
+  </div>
+  <div>
+    <button type="submit" class="btn btn-primary mb-3">Editar</button>
+  </div>
+</form>

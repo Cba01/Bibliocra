@@ -1,5 +1,6 @@
 import { response, Router } from "express";
 import Book from "../models/book";
+import User from "../models/user";
 
 const axios = require("axios");
 const router = Router();
@@ -25,11 +26,8 @@ router.get("/admin/books", (req, res) => {
     if(user.rol != 'administrador'){
       res.redirect('/')
     }
-    axios.get('http://localhost:3000/api/book/render').then((data)=>{
-      const allbooks = data.data;
-
-      res.render("booksAdmin", { layout: "adminLayout", books: true, allbooks, auth: true});
-    });
+    
+    res.render("booksAdmin", { layout: "adminLayout", books: true, auth: true});
   }else{
     res.redirect('/login');
   }
@@ -61,11 +59,8 @@ router.get("/admin/users", (req, res) => {
     if(user.rol != 'administrador'){
       res.redirect('/')
     }
-    axios.get("http://localhost:3000/api/user/render").then((data) => {
-    const allusers = data.data;
-
-    res.render("usersAdmin", { layout: "adminLayout", users: true, allusers, auth: true});
-  });
+    
+    res.render("usersAdmin", { layout: "adminLayout", users: true, auth: true});
   }else{
     res.redirect('/login');
   }
@@ -74,6 +69,36 @@ router.get("/admin/users", (req, res) => {
 router.get("/admin/useradd", (req, res) => {
   const user = req.session.user;
 
+  if(user){
+    if(user.rol != 'administrador'){
+      res.redirect('/')
+    }
+
+    res.render("usersAdmin", { layout: "adminLayout", add: true, auth: true});
+  }else{
+    res.redirect('/login');
+  }
+});
+
+router.get("/admin/userupdate/:id", async (req, res) => {
+  const user = req.session.user;
+
+  if(user){
+    if(user.rol != 'administrador'){
+      res.redirect('/')
+    }
+    const usuario = await User.findById(req.params.id).lean();
+    var rol;
+    if(usuario.rol === 'usuario'){
+      rol = false;
+    }else{
+      rol = true
+    }
+
+    res.render("usersAdmin", { layout: "adminLayout", update: true, usuario, rol, auth: true});
+  }else{
+    res.redirect('/login');
+  }
 });
 
 router.get("/admin/sales", (req, res) => {

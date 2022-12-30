@@ -4,7 +4,7 @@ var deleteImg = require("fs");
 const renderBooks = async function (req, res) {
   const books = await Book.find();
 
-  res.status(200).send(books);
+  res.send(books);
 };
 
 const addBook = async function (req, res) {
@@ -18,15 +18,6 @@ const addBook = async function (req, res) {
 
   res.redirect("/admin/books");
 };
-
-//funcion no terminada
-const searchBook = async function(req, res){
-  const data = req.body.nombre;
-  
-  const books = await Book.find({title: data});
-
-  res.status(200).send(books)
-}
 
 const deleteBook = async function (req, res) {
   // Recibir ID de los parametros y buscar libro segun la ID
@@ -89,7 +80,6 @@ module.exports = {
     renderBooks,
     addBook,
     deleteBook,
-    searchBook,
     updateBook,
     searchBookId
 }
