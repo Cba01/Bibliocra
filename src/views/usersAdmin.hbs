@@ -1,20 +1,16 @@
 <div class="container">
     {{#if users}}
     <div class="m-3 d-flex">
-        <form action="/api/user/buscar" method="POST">
-          <div class="d-flex">
-            <input class="form-control" type="text" name="nombre" id="nombre">
-            <button type="submit" class="btn btn-primary">Buscar</button>
-          </div>
-        </form>
         <a class="btn btn-primary ms-auto" href="/admin/useradd">agregar usuario</a>
     </div>
     <div class="m-2">
-        <table class="table">
+        <table id="users" class="table">
   <thead>
     <tr>
       <th scope="col">Nombre</th>
       <th scope="col">Apellido</th>
+      <th scope="col">Usuario</th>
+      <th scope="col">Correo</th>
       <th scope="col">Direccion</th>
       <th scope="col">Telefono</th>
       <th scope="col">Rol</th>
@@ -22,26 +18,65 @@
     </tr>
   </thead>
   <tbody>
-    {{#each allusers}}
-    <tr>
-      <td>{{nombre}}</td>
-      <td>{{apellido}}</td>
-      <td>{{direccion}}</td>
-      <td>{{telefono}}</td>
-      <td>{{rol}}</td>
-      <td>
-        <a href="/api/user/delete/{{_id}}" class="btn btn-danger">Eliminar</a>
-      </td>
-    </tr>
-    {{/each}}
+    
   </tbody>
 </table>
     </div>
+
+    <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+      $('#users').DataTable({
+        ajax:{
+          url: '/api/user/render',
+          dataSrc: ''
+        },
+        columns: [
+          {'data': 'nombre'},
+          {'data': 'apellido'},
+          {'data': 'usuario'},
+          {'data': 'correo'},
+          {'data': 'direccion'},
+          {'data': 'telefono'},
+          {'data': 'rol'},
+          {'data': null, 
+            'render': function(data){
+              var botones = "<a onclick="+"confirmar('"+data._id+"')"+" class='btn btn-danger'>Eliminar</a>" + '<a href="/admin/userupdate/'+data._id+'" class="btn btn-info">Editar</a>'
+              return botones
+            }
+          }
+        ],
+        pageLength: 5,
+        lenghtMenu: [[5,10,20,-1],[5,10,20, 'Todos']]
+      });
+
+      function confirmar(id) {
+        Swal.fire({
+          title: '¿Confirma eliminar el registro: '+id+'?',
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#d33',
+          cancelButtonColor: '#6c757d',
+          confirmButtonText: 'Confirmar'
+        }).then((result) => {
+          if (result.isConfirmed) {   
+            window.location = '/api/user/delete/'+id;                              
+          }
+        });
+      };
+    </script>
 {{/if}}
 
 {{#if add}}
     <div class="m-3">
         {{>addUser}}
+    </div>
+{{/if}}
+{{#if update}}
+    <div class="m-3">
+        {{>updateUser}}
     </div>
 {{/if}}
 </div>

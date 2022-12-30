@@ -14,6 +14,10 @@ const userSchema = new Schema(
         type: String,
         trim: true,
     },
+    correo: {
+      type: String,
+      trim: true,
+    },
     direccion: {
         type: String,
         trim: true,

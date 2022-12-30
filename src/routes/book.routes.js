@@ -20,7 +20,6 @@ var storagePath = multer.diskStorage({
 var load = multer({ storage: storagePath });
 
 router.get("/book/render", bookController.renderBooks);
-router.post("/book/buscar", bookController.searchBook)//no terminado
 
 // Enviar imagen y guardar Libro; 
 router.post("/book/add", load.single("image"),bookController.addBook);

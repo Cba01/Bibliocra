@@ -1,17 +1,10 @@
 <div class="container">
-  <img class="img-thumbnail" width="100" src="../src/public/images/1670808904272_FjsSrQ3UAAMua5N.jpg" alt="">
 {{#if books}}
     <div class="m-3 d-flex">
-        <form action="/api/book/buscar" method="POST">
-          <div class="d-flex">
-            <input class="form-control" type="text" name="nombre" id="nombre">
-            <button type="submit" class="btn btn-primary">Buscar</button>
-          </div>
-        </form>
         <a class="btn btn-primary ms-auto" href="/admin/book/createBook">agregar libro</a>
     </div>
     <div class="m-2">
-        <table class="table">
+        <table id="books" class="table">
   <thead>
     <tr>
       <th scope="col">Nombre</th>
@@ -25,27 +18,59 @@
     </tr>
   </thead>
   <tbody>
-    {{#each allbooks}}
-    <tr>
-      <td>{{title}}</td>
-      <td>{{description}}</td>
-      <td><img class="img-thumbnail" width="100" src="/images/{{image}}" alt="">
-      {{image}}
-      </td>
-      
-      <td>{{price}}</td>
-      <td>{{genre}}</td>
-      <td>{{author}}</td>
-      <td>{{date}}</td>
-      <td>
-        <a href="/api/book/delete/{{_id}}" class="btn btn-danger">Eliminar</a>
-        <a href="/admin/book/updateBook/{{_id}}" class="btn btn-info">Editar</a>
-      </td>
-    </tr>
-    {{/each}}
+
   </tbody>
 </table>
     </div>
+
+    <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+      $('#books').DataTable({
+        ajax:{
+          url: '/api/book/render',
+          dataSrc: ''
+        },
+        columns: [
+          {'data': 'title'},
+          {'data': 'description'},
+          {'data': null, 
+            'render': function(data){
+              return '<img class="img-thumbnail" width="100" src="/images/'+data.image+'" alt="">'+data.image
+            }
+          },
+          {'data': 'price'},
+          {'data': 'genre'},
+          {'data': 'author'},
+          {'data': 'date'},
+          {'data': null, 
+            'render': function(data){
+              var botones = "<a onclick="+"confirmar('"+data._id+"')"+" class='btn btn-danger'>Eliminar</a>" + '<a href="/admin/book/updateBook/'+data._id+'" class="btn btn-info">Editar</a>'
+              return botones
+            }
+          }
+        ],
+        pageLength: 5,
+        lenghtMenu: [[5,10,20,-1],[5,10,20, 'Todos']]
+      });
+
+      function confirmar(id) {
+        Swal.fire({
+          title: '¿Confirma eliminar el registro: '+id+'?',
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#d33',
+          cancelButtonColor: '#6c757d',
+          confirmButtonText: 'Confirmar'
+        }).then((result) => {
+          if (result.isConfirmed) {   
+            window.location = '/api/book/delete/'+id;                              
+          }
+        });
+      };
+    </script>
 {{/if}}
 
 {{#if add}}
@@ -53,3 +78,4 @@
         {{>addBook}}
     </div>
 {{/if}}
+</div>

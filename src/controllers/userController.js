@@ -62,16 +62,7 @@ const logout = async function(req, res){
 const renderUsers = async function(req, res){
     const users = await User.find();
 
-    res.status(200).send(users)
-}
-
-//funcion no terminada
-const searchUser = async function(req, res){
-    const data = req.body.nombre;
-    
-    const users = await User.find({nombre: data});
-
-    res.status(200).send(users)
+    res.send(users)
 }
 
 const deleteUser = async function(req, res){
@@ -84,11 +75,20 @@ const deleteUser = async function(req, res){
     res.redirect("/admin/users")
 }
 
+const updateUser = async function(req, res){
+    const id = req.params.id;
+    const data = req.body;
+
+    await User.findByIdAndUpdate(id, data);
+
+    res.redirect('/admin/users');
+}
+
 module.exports = {
     login,
     logout,
     renderUsers,
     addUser,
     deleteUser,
-    searchUser
+    updateUser
 }
