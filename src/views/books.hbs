@@ -1,1 +1,26 @@
-hoasdasd
+
+<section style="background: url(./img/bookshelf-2.jpg) no-repeat center fixed; background-size: cover;">
+    {{!-- CREAR CARD DE LIBRO --}}
+    {{#if books}}        
+        {{#each allbooks}}
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top img-thumbnail" width="100" src="/images/{{image}}" alt="">
+            {{image}}
+            <div class="card-body">
+                <h5 class="card-title">{{title}}</h5>
+                <p class="card-text">{{description}}</p>
+                <p class="card-text">{{price}}</p>
+                <a href="/api/cart/addBook/{{_id}}"class="btn btn-primary">Añadir</a>
+            </div>
+        </div>
+        {{/each}}
+    {{/if}}
+
+<!-- FALTA IMPLEMENTAR LÓGICA
+    {{#if add}}
+        <div class="m-3">
+            {{>addBook}}
+        </div>
+    {{/if}}
+-->
+</section>
