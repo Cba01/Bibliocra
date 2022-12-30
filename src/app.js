@@ -9,10 +9,14 @@ import { create } from "express-handlebars";
 import path from "path";
 import morgan from "morgan";
 
+const flash = require('connect-flash')
 const app = express();
+var bodyparser = require("body-parser");
 const session = require('express-session');
 
 app.set("views", path.join(__dirname, "/views"));
+app.use(bodyparser.urlencoded({extended:true}));
+app.use(bodyparser.json({limit: '50mb', extended: true}));
 
 var hbs = create({
   layoutsDir: path.join(app.get("views"), "layouts"),
@@ -33,6 +37,7 @@ app.use(session({
   resave: false,
   saveUninitialized: false, 
 }))
+app.use(flash())
 
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin','*'); 

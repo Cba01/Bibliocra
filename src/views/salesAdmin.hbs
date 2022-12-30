@@ -1,1 +1,34 @@
-<h1>Sales</h1>
+<div class="container">
+    <div class="m-2">
+        <table id="ventas" class="table">
+  <thead>
+    <tr>
+      <th scope="col">Fecha</th>
+      <th scope="col">Total</th>
+    </tr>
+  </thead>
+  <tbody>
+
+  </tbody>
+</table>
+    </div>
+
+    <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+      $('#ventas').DataTable({
+        ajax:{
+          url: '/api/venta/render',
+          dataSrc: ''
+        },
+        columns: [
+          {'data': 'fechaCompra'},
+          {'data': 'total'},
+        ],
+        pageLength: 5,
+        lenghtMenu: [[5,10,20,-1],[5,10,20, 'Todos']]
+      });
+    </script>
+</div>

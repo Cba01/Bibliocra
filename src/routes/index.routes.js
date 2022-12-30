@@ -4,13 +4,23 @@ import book from "../models/book";
 const router = Router();
 
 router.get("/", (req, res) => {
-  res.render("index");
+  const user = req.session.user;
+  if(user){
+    res.render("index", {layout: 'main', auth: true, message: req.flash('message')});
+  }else{
+    res.render("index", {layout: 'main', auth: false});
+  }
 });
 
 router.get("/books", async (req, res) => {
+  const user = req.session.user;
   const books = await book.find().lean();
-
-  res.render("books", {layout: 'main', books});
+  
+  if(user){
+    res.render("books", {layout: 'main', books, auth: true});
+  }else{
+    res.render("books", {layout: 'main', books, auth: false});
+  }
 });
 
 router.get("/login", (req, res) => {

@@ -11,8 +11,12 @@ const login = async function(req, res){
         bcrypt.compare(pass, user[0].password, function(error, check){
             if(check){
                 var rol = user[0].rol;
-                req.session.user = {usuario: usuario, rol: rol}
-                res.redirect('/admin/')
+                req.session.user = {usuario: usuario, rol: rol, id: user[0]._id}
+                if(rol == 'administrador'){
+                    res.redirect('/admin/')
+                }else{
+                    res.redirect('/')
+                }
             }else{
                 res.status(400).send({error: "password incorrecta"})
             }

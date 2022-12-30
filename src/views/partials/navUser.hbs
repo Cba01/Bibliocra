@@ -6,13 +6,28 @@
     <ul id="navbar">
       <li><a class="" href="/">Inicio</a></li>
       <li><a href="/books">Libros</a></li>
-      <li><a href="">Contacto</a></li>
-      <li><a href="">Sobre nosotros</a></li>
       <li><a class="btn" id="boton-carrito" data-bs-toggle="modal" data-bs-target="#ModalCarrito"><i class="fa-solid fa-cart-shopping"></i><span id="contadorCarrito">0</span></a></li>
-      <li><a href="/admin"><i class="fa-solid fa-user"></i></a></li>
+      {{#if auth}}
+      <li class="nav-item">
+          <form action="/api/user/logout" method="post">
+            <button type="submit" class="btn btn-primary">Cerrar sesion</button>
+          </form>
+      </li>
+      {{else}}
+      <li><a href="/login"><i class="fa-solid fa-user"></i></a></li>
+      {{/if}}
     </ul>
   </div>
 </section>
+
+{{#if message}}
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+      {{message}}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    {{/if}}
 
 <div class="modal" tabindex="-1" id="ModalCarrito" aria-labelledby="ModalCarritoLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -22,13 +37,21 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
+        {{#if auth}}
+        {{else}}
+        <p>Inicie Sesion para poder realizar la compra</p>
+        {{/if}}
         <div id="carrito-contenedor">
-            </div>
+          </div>
       </div>
       <div class="modal-footer">
         <p class="precioProducto">Precio total: $<span id="precioTotal">0</span></p>
         <button id="vaciar-carrito" class="btn btn-danger">Vaciar carrito</button>
-        <button class="btn btn-primary">Realizar compra</button>
+        {{#if auth}}
+        <button class="btn btn-primary" id="comprar">Realizar compra</button>
+        {{else}}
+        <a href="/login" class="btn btn-primary">login</a>
+        {{/if}}
       </div>
     </div>
   </div>

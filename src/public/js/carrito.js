@@ -1,12 +1,45 @@
 const contenedorCarrito = document.getElementById('carrito-contenedor')
 const botonVaciar = document.getElementById('vaciar-carrito')
 const contadorCarrito = document.getElementById('contadorCarrito')
+const botonComprar = document.getElementById('comprar')
 
 let carrito = []
 
 botonVaciar.addEventListener('click', () => {
     carrito.length = 0
     actualizarCarrito()
+})
+
+botonComprar.addEventListener('click', () => {
+    var libros = [];
+    carrito.map(prod => {
+        var libro = {
+            idLibro: prod._id,
+            title: prod.title,
+            precio: prod.precio,
+            cantidad: prod.cantidad
+        }
+
+        libros.push(libro)
+    })
+    
+    const datos = {
+        libros: libros,
+        total: precioTotal.textContent,
+        fechaCompra: Date.now()
+    }
+    fetch('/api/venta/comprar', {
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(datos)
+    }).then(response => response.json())
+    .then(data => {
+        if(data.ok){
+            window.location.reload()
+        }
+    })
 })
 
 const agregarAlCarrito = async (prodId) => {

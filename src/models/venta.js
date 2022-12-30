@@ -3,6 +3,10 @@ import Book from './book';
 
 const libroInfoSchema = new Schema(
     {
+        idlibro: {
+          type: Schema.Types.ObjectId,
+          ref: 'Books'
+        },
         title: {
             type: String
         },
