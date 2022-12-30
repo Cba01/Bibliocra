@@ -1,0 +1,35 @@
+<section id="header">
+
+    <h1 id="#">Bibliocra</h1>
+
+  <div>
+    <ul id="navbar">
+      <li><a class="" href="/">Inicio</a></li>
+      <li><a href="/books">Libros</a></li>
+      <li><a href="">Contacto</a></li>
+      <li><a href="">Sobre nosotros</a></li>
+      <li><a class="btn" id="boton-carrito" data-bs-toggle="modal" data-bs-target="#ModalCarrito"><i class="fa-solid fa-cart-shopping"></i><span id="contadorCarrito">0</span></a></li>
+      <li><a href="/admin"><i class="fa-solid fa-user"></i></a></li>
+    </ul>
+  </div>
+</section>
+
+<div class="modal" tabindex="-1" id="ModalCarrito" aria-labelledby="ModalCarritoLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ModalCarritoLabel">Carrito</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div id="carrito-contenedor">
+            </div>
+      </div>
+      <div class="modal-footer">
+        <p class="precioProducto">Precio total: $<span id="precioTotal">0</span></p>
+        <button id="vaciar-carrito" class="btn btn-danger">Vaciar carrito</button>
+        <button class="btn btn-primary">Realizar compra</button>
+      </div>
+    </div>
+  </div>
+</div>
