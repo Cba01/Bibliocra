@@ -1,42 +1,61 @@
-
-
+{{#if register}}
 <div class="mask d-flex align-items-center h-100 pb-5 gradient-custom">
   <div class="container">
     <div class="row justify-content-center">
-
-      <div class="card" style="width: 20rem;" >
-        <h2 class="text-center pt-2">Bibliocra</h2>
+      <div class="card" style="width: 20rem;">
+        <h2 class="text-center pt-1">Bibliocra</h2>
         <div class="card-body">
-          <h5 class="card-title text-center">Iniciar Sesion</h5>
-          <form action="/api/user/login" method="post">
-            <div class="input-group mb-3">
-              <input
-                class="form-control"
-                type="text"
-                id="usuario"
-                name="usuario"
-                placeholder="Usuario"
-              />
-            </div>
-            <div class="input-group mb-3">
-              <input
-                class="form-control"
-                type="password"
-                id="password"
-                name="password"
-                placeholder="Contraseña"
-              />
-            </div>
-            <div class="text-center">
-              <button type="submit" class="btn btn-primary mb-3">Iniciar sesion</button>
-            </div>
-
-          </form>
-          <p class="card-text"><small class="text-muted">
-              <a href="">Registrarse</a>
-            </small></p>
+          <h5 class="card-title text-center">Registrarse</h5>
+            {{>addUser}}
         </div>
       </div>
     </div>
   </div>
 </div>
+
+  
+{{else}}
+  <div class="mask d-flex align-items-center h-100 pb-5 gradient-custom">
+    <div class="container">
+      <div class="row justify-content-center">
+
+        <div class="card" style="width: 20rem;">
+          <h2 class="text-center pt-2">Bibliocra</h2>
+          <div class="card-body">
+            <h5 class="card-title text-center">Iniciar Sesion</h5>
+            <form action="/api/user/login" method="post">
+              <div class="input-group mb-3">
+                <input
+                  class="form-control"
+                  type="text"
+                  id="usuario"
+                  name="usuario"
+                  placeholder="Usuario"
+                />
+              </div>
+              <div class="input-group mb-3">
+                <input
+                  class="form-control"
+                  type="password"
+                  id="password"
+                  name="password"
+                  placeholder="Contraseña"
+                />
+              </div>
+              <div class="text-center">
+                <button type="submit" class="btn btn-primary mb-3">Iniciar
+                  sesion</button>
+              </div>
+
+            </form>
+            <p class="card-text"><small class="text-muted">
+                <a href="/register">Registrarse</a>
+                  
+                
+              </small></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{{/if}}

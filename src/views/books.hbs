@@ -1,19 +1,23 @@
-
-<section style="background: url(./img/bookshelf-2.jpg) no-repeat center fixed; background-size: cover; height: 85vh">
-    {{!-- CREAR CARD DE LIBRO --}}
-        <div class="container pt-3">
-            {{#each books}}
-                <div class="col-3">
-                    <div class="card" style="width: 18rem;">
-                        <img class="card-img-top img-thumbnail" width="100" src="/images/{{image}}" alt="">
-                        <div class="card-body">
-                            <h5 class="card-title">{{title}}</h5>
-                            <p class="card-text">{{description}}</p>
-                            <p class="card-text">{{price}}</p>
-                            <a onclick="agregarAlCarrito('{{_id}}')" class="btn btn-primary">Añadir</a>
-                        </div>
-                    </div>
-                </div>
-            {{/each}}
+<div class="container">
+  <div class="row row-cols-5">
+    {{! CREAR CARD DE LIBRO }}
+    {{#each books}}
+      <section id="product" class="section-p">
+        <div class="pro-container">
+          <div class="pro">
+            <img src="/images/{{image}}" alt="" />
+            <div class="des">
+              <span>Bibliocra</span>
+              <h5>{{title}}</h5>
+              <h4>${{price}}</h4>
+              <a onclick="agregarAlCarrito('{{_id}}')" href="#"><i
+                  class="fa-solid fa-cart-shopping cart"
+                ></i></a>
+            </div>
+          </div>
         </div>
-</section>
+      </section>
+    {{/each}}
+
+  </div>
+</div>

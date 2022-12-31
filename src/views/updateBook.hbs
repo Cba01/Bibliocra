@@ -34,13 +34,11 @@
     <label for="genre" class="form-label">Genero</label>
 
    <select class="form-select" id="multiple-select-field" id="genre" name="genre" data-placeholder="Seleccione las opciones necesarias" multiple>
-      <option
-      {{#each book.genre}}
-            {{log this}}
-        {{!-- Si el genero es igual a está opcion entonces poner selected (Se necesita comparar {{this}} con "Terror") EJ: if(this == "Terror") selected; --}}
-      {{/each}}
-      >Terror</option>
+      <option>Accion</option>
+      <option>Terror</option>
       <option>Thriller</option>
+      <option>Filosofia</option>
+      <option>Ciencia</option>
       <option>Crimen</option>
       <option>Suspenso</option>
       <option>Novela psicologica</option>

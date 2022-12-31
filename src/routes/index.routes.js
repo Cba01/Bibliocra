@@ -27,4 +27,8 @@ router.get("/login", (req, res) => {
   res.render("auth/login", {layout: "main"});
 });
 
+ router.get("/register", (req, res) => {
+  res.render("auth/login", {layout: "main", register: true});
+});
+
 export default router;
