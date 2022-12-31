@@ -13,12 +13,28 @@ const comprar = async function(req, res){
 }
 
 const render = async function(req, res){
-    const ventas = await Venta.find()
-    console.log(ventas)
+    const ventas = await Venta.find().populate({path:'usuario', select: [
+        'nombre',
+        'apellido',
+        'usuario',
+        'correo',
+        'direccion',
+        'telefono'
+    ]})
+    
     res.send(ventas)
+}
+
+const editarEstado = async function(req, res){
+    const data = req.body
+
+    await Venta.findOneAndUpdate({_id: data.id}, {estado: data.estado});
+
+    res.status(200).send({ok: true})
 }
 
 module.exports = {
     comprar,
-    render
+    render,
+    editarEstado
 }

@@ -14,9 +14,9 @@ botonComprar.addEventListener('click', () => {
     var libros = [];
     carrito.map(prod => {
         var libro = {
-            idLibro: prod._id,
+            idlibro: prod._id,
             title: prod.title,
-            precio: prod.precio,
+            precio: prod.price,
             cantidad: prod.cantidad
         }
 

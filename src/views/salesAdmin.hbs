@@ -5,6 +5,8 @@
     <tr>
       <th scope="col">Fecha</th>
       <th scope="col">Total</th>
+      <th scope="col">Estado</th>
+      <th scope="col">Opciones</th>
     </tr>
   </thead>
   <tbody>
@@ -16,7 +18,6 @@
     <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
       $('#ventas').DataTable({
         ajax:{
@@ -26,9 +27,67 @@
         columns: [
           {'data': 'fechaCompra'},
           {'data': 'total'},
+          {'data': 'estado'},
+          {'data': null, 
+            'render': function(data){
+              var botones = "<button type='button' class='btn btn-info me-1' data-bs-toggle='modal' data-bs-target='#Modal"+data._id+"'>Ver detalles</button><button type='button' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#ModalEdit"+data._id+"'>Editar estado</button>"
+              var modal = "<div class='modal fade' id='Modal"+data._id+"' tabindex='-1' aria-labelledby='Label"+data._id+"' aira-hidden='true'>"
+              modal = modal+"<div class='modal-dialog'>"+"<div class='modal-content'>"+"<div class='modal-header'>"+"<h5 class='modal-title' id='Label"+data._id+"'>Fecha de compra: "+data.fechaCompra+"</h5>"
+              modal = modal+"<button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button> </div>"
+              modal = modal+"<div class='modal-body'><p>Nombre: "+data.usuario.nombre+" "+data.usuario.apellido+"</p><p>Usuario: "+data.usuario.usuario+"</p>"
+              modal = modal+"<p>Correo: "+data.usuario.correo+"</p><p>Direccion: "+data.usuario.direccion+" Telefono: "+data.usuario.telefono+"</p>"
+              modal = modal+"<br><p>Libros:</p>"
+              var libros = data.libros
+              var contador = 1
+              libros.forEach(libro=>{
+                modal = modal+"<p> "+contador+"- Titulo: "+libro.title+" Cantidad: "+libro.cantidad+"</p>"
+              })
+              modal = modal+"<p>Total de la compra: "+data.total+"</p></div>"
+              modal = modal+"<div class='modal-footer'>"+"<button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Cerrar</button></div></div></div></div>"
+
+              modal = modal+"<div class='modal fade' id='ModalEdit"+data._id+"' tabindex='-1' aria-labelledby='LabelEdit"+data._id+"' aira-hidden='true'>"
+              modal = modal+"<div class='modal-dialog'>"+"<div class='modal-content'>"+"<div class='modal-header'>"+"<h5 class='modal-title' id='LabelEdit"+data._id+"'>Editar Estado</h5>"
+              modal = modal+"<button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button> </div>"
+              modal = modal+"<div class='modal-body'><select class='form-select' name='estado' id='estado"+data._id+"'>"
+              var estados = ['pendiente', 'en preparacion', 'enviado']
+              estados.forEach(estado=>{
+                if(estado == data.estado){
+                  modal = modal+"<option value='"+estado+"' selected>"+estado+"</option>"
+                }else{
+                  modal = modal+"<option value='"+estado+"'>"+estado+"</option>"
+                }
+              })
+              modal = modal+"</select></div>"
+              modal = modal+"<div class='modal-footer'>"+"<button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Cerrar</button><button class='btn btn-primary'"+`onclick="editar('${data._id}')"`+">Realizar compra</button></div></div></div></div>"
+              var boton = botones + modal
+              return boton
+            }
+          }
         ],
         pageLength: 5,
         lenghtMenu: [[5,10,20,-1],[5,10,20, 'Todos']]
       });
+
+      function editar(id){
+        const select = document.getElementById('estado'+id)
+        var selected = select.options[select.selectedIndex].text;
+        var datos = {
+          id: id,
+          estado: selected
+        }
+        fetch('/api/venta/editarEstado', {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(datos)
+        }).then(response => response.json())
+        .then(data => {
+            if(data.ok){
+                window.location.reload()
+            }
+        })
+      }
+      
     </script>
 </div>

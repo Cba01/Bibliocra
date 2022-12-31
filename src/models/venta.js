@@ -5,7 +5,7 @@ const libroInfoSchema = new Schema(
     {
         idlibro: {
           type: Schema.Types.ObjectId,
-          ref: 'Books'
+          ref: 'Book'
         },
         title: {
             type: String
@@ -23,7 +23,7 @@ const ventaSchema = new Schema(
   {
     usuario: {
       type: Schema.Types.ObjectId,
-      ref: 'Users'
+      ref: 'User'
     },
     libros: [libroInfoSchema],
     total: {
@@ -33,7 +33,12 @@ const ventaSchema = new Schema(
     fechaCompra: {
         type: Date,
         trim: true
-    }
+    },
+    estado: {
+      type: String,
+      trim: true,
+      default: 'pendiente',
+  },
   },
   {
     timestamps: true,
