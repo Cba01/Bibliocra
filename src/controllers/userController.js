@@ -13,7 +13,7 @@ const login = async function(req, res){
                 var rol = user[0].rol;
                 req.session.user = {usuario: usuario, rol: rol, id: user[0]._id}
                 if(rol == 'administrador'){
-                    res.redirect('/admin/')
+                    res.redirect('/admin/books')
                 }else{
                     res.redirect('/')
                 }
